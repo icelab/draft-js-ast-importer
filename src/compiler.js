@@ -62,9 +62,13 @@ function compiler (ast, config = {}) {
       children.forEach((child) => {
         const type = child[0]
         const childData = visit(child, {depth: depth + 1})
-        // Combine the text and the character list
-        text = text + childData.text
-        characterList = characterList.concat(childData.characterList)
+        // Nested blocks will be added to the `blocks` array
+        // when visited
+        if (type !== 'block') {
+          // Combine the text and the character list
+          text = text + childData.text
+          characterList = characterList.concat(childData.characterList)
+        }
       })
 
       const contentBlock = new ContentBlock({
