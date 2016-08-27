@@ -1,4 +1,4 @@
-// import flatten from 'flatten'
+import flatten from './flatten'
 import camelCase from './camelCase'
 import dataSchema from './dataSchema'
 import {OrderedSet, List, Repeat} from 'immutable'
@@ -13,8 +13,6 @@ import {
  * Compiler
  */
 function compiler (ast, config = {}) {
-  const blocks = []
-
   /**
    * Called for each node in the abstract syntax tree (AST) that makes up the
    * state contained in the store. We identify the node by `type`
@@ -50,6 +48,7 @@ function compiler (ast, config = {}) {
      * function
      */
     visitBlock (node, opts) {
+      const childBlocks = []
       let depth = opts.depth || 0
       const type = node[dataSchema.block.type]
       const key = node[dataSchema.block.key]
@@ -64,7 +63,9 @@ function compiler (ast, config = {}) {
         const childData = visit(child, {depth: depth + 1})
         // Nested blocks will be added to the `blocks` array
         // when visited
-        if (type !== 'block') {
+        if (type === 'block') {
+          childBlocks.push(childData)
+        } else {
           // Combine the text and the character list
           text = text + childData.text
           characterList = characterList.concat(childData.characterList)
@@ -79,8 +80,7 @@ function compiler (ast, config = {}) {
         depth,
       })
 
-      // Push the block into our tracking array
-      blocks.push(contentBlock)
+      return [contentBlock, childBlocks]
     },
 
     /**
@@ -165,7 +165,7 @@ function compiler (ast, config = {}) {
   }
 
   // Procedurally visit each node
-  ast.forEach(visit)
+  const blocks = flatten(ast.map(visit))
 
   return blocks
 }
