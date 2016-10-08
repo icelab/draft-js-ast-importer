@@ -51,7 +51,6 @@ function compiler (ast, config = {}) {
       const childBlocks = []
       let depth = opts.depth || 0
       const type = node[dataSchema.block.type]
-      const key = node[dataSchema.block.key]
       const children = node[dataSchema.block.children]
 
       // Build up block content
@@ -96,7 +95,6 @@ function compiler (ast, config = {}) {
      */
     visitEntity (node) {
       const type = node[dataSchema.entity.type]
-      const key = node[dataSchema.entity.key]
       const mutability = node[dataSchema.entity.mutability]
       const data = node[dataSchema.entity.data]
       const children = node[dataSchema.entity.children]
@@ -113,7 +111,6 @@ function compiler (ast, config = {}) {
       let characterList = List()
 
       children.forEach((child) => {
-        const type = child[0]
         const childData = visit(child, {entity})
         // Combine the text and the character list
         text = text + childData.text
@@ -161,7 +158,7 @@ function compiler (ast, config = {}) {
         text,
         characterList,
       }
-    }
+    },
   }
 
   // Procedurally visit each node
