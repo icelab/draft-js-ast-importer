@@ -7,7 +7,8 @@ import compiler from './compiler'
  * @return {ContentState} A draft-js `ContentState` object
  */
 function importer (ast) {
-  return ContentState.createFromBlockArray(compiler(ast))
+  const blocks = compiler(ast)
+  return ContentState.createFromBlockArray(blocks)
 }
 
 export default importer
