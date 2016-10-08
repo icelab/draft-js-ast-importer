@@ -20,7 +20,8 @@
   },
   "keywords": [
     "draft-js",
-    "export"
+    "export",
+    "import"
   ],
   "authors": [
     "Max Wheeler <max@icelab.com.au> (https://github.com/makenosound)"
