@@ -8,7 +8,13 @@ import compiler from './compiler'
  */
 function importer (ast) {
   const blocks = compiler(ast)
-  return ContentState.createFromBlockArray(blocks)
+  // Ensure we return a valid `ContentState` object whether or not there's
+  // any content
+  if (blocks.length > 0) {
+    return ContentState.createFromBlockArray(blocks)
+  } else {
+    return ContentState.createFromText('')
+  }
 }
 
 export default importer
