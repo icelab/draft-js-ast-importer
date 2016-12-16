@@ -1,7 +1,7 @@
 import flatten from './flatten'
 import camelCase from './camelCase'
 import dataSchema from './dataSchema'
-import {OrderedSet, List, Repeat} from 'immutable'
+import {OrderedSet, List, Repeat, Map} from 'immutable'
 import {
   CharacterMetadata,
   ContentBlock,
@@ -52,6 +52,7 @@ function compiler (ast, config = {}) {
       let depth = opts.depth || 0
       const type = node[dataSchema.block.type]
       const children = node[dataSchema.block.children]
+      const data = Map(node[dataSchema.block.data])
 
       // Build up block content
       let text = ''
@@ -77,6 +78,7 @@ function compiler (ast, config = {}) {
         type,
         characterList,
         depth,
+        data,
       })
 
       return [contentBlock, childBlocks]

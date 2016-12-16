@@ -25,7 +25,8 @@ export default [
                   "level 1"
                 ]
               ]
-            ]
+            ],
+            {}
           ]
         ],
         [
@@ -54,13 +55,16 @@ export default [
                         "level 2"
                       ]
                     ]
-                  ]
+                  ],
+                  {}
                 ]
               ]
-            ]
+            ],
+            {}
           ]
         ]
-      ]
+      ],
+      {}
     ]
   ],
   [
@@ -76,7 +80,8 @@ export default [
             "level 0"
           ]
         ]
-      ]
+      ],
+      {}
     ]
   ]
 ]
