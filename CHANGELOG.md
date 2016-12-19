@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# v0.0.4 2016-12-19
+
+### Added
+
+* Include support for importing block metadata from the AST. Thanks to [@corbanbrook](https://github.com/icelab/draft-js-ast-importer/pull/5)!
+
 # v0.0.3 2016-10-17
 
 * Ensure we return a valid `ContentState` object whether or not there’s any content.
