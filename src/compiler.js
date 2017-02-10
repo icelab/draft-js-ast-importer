@@ -5,7 +5,7 @@ import {OrderedSet, List, Repeat, Map} from 'immutable'
 import {
   CharacterMetadata,
   ContentBlock,
-  Entity,
+  ContentState,
   genKey,
 } from 'draft-js'
 
@@ -13,6 +13,11 @@ import {
  * Compiler
  */
 function compiler (ast, config = {}) {
+  /**
+   * Create an empty ContentState object
+   */
+  let entityContentState = ContentState.createFromText('')
+
   /**
    * Called for each node in the abstract syntax tree (AST) that makes up the
    * state contained in the store. We identify the node by `type`
@@ -104,16 +109,17 @@ function compiler (ast, config = {}) {
       // Create the entity and note its key
       // run over all the children and aggregate them into the
       // format we need for the final parent block
-      const entity = Entity.create(
+      entityContentState = entityContentState.createEntity(
         type,
         mutability,
         data
       )
+      const entityKey = entityContentState.getLastCreatedEntityKey()
       let text = ''
       let characterList = List()
 
       children.forEach((child) => {
-        const childData = visit(child, {entity})
+        const childData = visit(child, {entityKey})
         // Combine the text and the character list
         text = text + childData.text
         characterList = characterList.concat(childData.characterList)
@@ -148,7 +154,7 @@ function compiler (ast, config = {}) {
       // Create a List that has the style values for each character
       let charMetadata = CharacterMetadata.create({
         style,
-        entity: opts.entity || null,
+        entity: opts.entityKey || null,
       })
 
       // We want the styles to apply to the entire range of `text`
@@ -163,10 +169,15 @@ function compiler (ast, config = {}) {
     },
   }
 
-  // Procedurally visit each node
-  const blocks = flatten(ast.map(visit))
-
-  return blocks
+  if (ast.length > 0) {
+    // Procedurally visit each node
+    const blocks = flatten(ast.map(visit))
+    // Build a valid ContentState that combines the blocks and the entity map
+    // from the entityContentState
+    return ContentState.createFromBlockArray(blocks, entityContentState.getEntityMap())
+  } else {
+    return ContentState.createFromText('')
+  }
 }
 
 export default compiler
