@@ -1,6 +1,7 @@
 import test from 'tape'
 import {
   convertToRaw,
+  ContentState,
   EditorState,
 } from 'draft-js'
 import importer from '../src'
@@ -43,6 +44,15 @@ test('it should export data', (nest) => {
       actual,
       expected,
       'converted data includes correct nested depth values'
+    )
+    assert.end()
+  })
+
+  nest.test('... return a valid ContentState given an empty AST', (assert) => {
+    const contentState = importer([])
+    assert.notOk(
+      contentState.hasText(),
+      'an empty content state is created'
     )
     assert.end()
   })
