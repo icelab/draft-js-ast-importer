@@ -1,6 +1,6 @@
 {
   "name": "draft-js-ast-importer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Allows you to import an abstract syntax tree (AST) output from the companion draft-js-ast-exporter.",
   "main": "lib/index.js",
   "scripts": {
