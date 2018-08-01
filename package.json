@@ -1,6 +1,6 @@
 {
   "name": "draft-js-ast-importer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Allows you to import an abstract syntax tree (AST) output from the companion draft-js-ast-exporter.",
   "main": "lib/index.js",
   "scripts": {
@@ -33,7 +33,7 @@
   "homepage": "https://github.com/icelab/draft-js-ast-importer",
   "dependencies": {
     "draft-js-utils": "^0.1.7",
-    "immutable": "^3.8.1"
+    "immutable": "~3.7.4"
   },
   "peerDependencies": {
     "draft-js": ">=0.10.0"

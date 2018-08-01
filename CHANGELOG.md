@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# v2.0.1 2018-08-01
+
+* Match version range for immutable to the same as draft-js
+
 # v2.0.0 2017-04-20
 
 * Add support for drat-js 0.10.0 entity API changes.
