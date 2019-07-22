@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# v2.0.2 2019-07-22
+
+* Add ESM entry point — [Thanks to @TrySound](https://github.com/icelab/draft-js-ast-importer/pull/7)
+
 # v2.0.1 2018-08-01
 
 * Match version range for immutable to the same as draft-js
