@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/icelab/draft-js-ast-importer",
   "dependencies": {
-    "draft-js-utils": "^0.1.7",
+    "draft-js-utils": "^1.4.0",
     "immutable": "~3.7.4"
   },
   "peerDependencies": {
