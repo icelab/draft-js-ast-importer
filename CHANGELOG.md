@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# v2.0.3 2019-08-08
+
+* Remove draft-js-utils dependency (was unused)
+
 # v2.0.2 2019-07-22
 
 * Add ESM entry point — [Thanks to @TrySound](https://github.com/icelab/draft-js-ast-importer/pull/7)
